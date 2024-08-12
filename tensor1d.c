@@ -119,7 +119,7 @@ float tensor_getitem(Tensor* t, int ix) {
     // handle negative indices by wrapping around
     if (ix < 0) { ix = t->size + ix; }
     // oob indices raise IndexError (and we return NaN)
-    if (ix >= t->size) {
+    if (ix < 0 || ix >= t->size) {
         fprintf(stderr, "IndexError: index %d is out of bounds of %d\n", ix, t->size);
         return NAN;
     }
